@@ -1,15 +1,16 @@
+import {loadoutDialog} from './equipment-ui.js';
 import {SaveModel,copy} from './model.js';
 import {strings} from './i18n.js';
 const $=s=>document.querySelector(s), el=(tag,text,cls)=>{const n=document.createElement(tag);if(text!==undefined)n.textContent=text;if(cls)n.className=cls;return n;};
 let lang='en';try{lang=localStorage.getItem('armaphract-language')==='zh'?'zh':'en';}catch{}
-let model=null,catalog=null,original=null,fileName='',tab='crew',selected=new Set(),visible=[],downloaded=false;
+let model=null,equipment=null,catalog=null,original=null,fileName='',tab='crew',selected=new Set(),visible=[],downloaded=false;
 const t=k=>strings[lang][k]||k;
 const label=s=>lang==='zh'&&catalog?.translations[s]&&catalog.translations[s]!==s?`${catalog.translations[s]} / ${s}`:s;
 const dialog=$('#dialog'),body=$('#dialog-body');let submit=null;
 function toast(message){$('#toast').textContent=message;$('#toast').hidden=false;clearTimeout(toast.timer);toast.timer=setTimeout(()=>$('#toast').hidden=true,6500);}
 function guard(fn){try{return fn();}catch(e){toast(t(e.message));}}
 function button(key,fn,cls){const b=el('button',t(key),cls);b.type='button';b.addEventListener('click',()=>guard(fn));return b;}
-function modal(title,fn){$('#dialog-title').textContent=title;body.replaceChildren();$('#dialog-error').textContent='';$('#apply').textContent=t('apply');submit=fn;dialog.showModal();}
+function modal(title,fn){dialog.classList.remove('equipment-dialog');$('#dialog-title').textContent=title;body.replaceChildren();$('#dialog-error').textContent='';$('#apply').textContent=t('apply');submit=fn;dialog.showModal();}
 function close(){dialog.close();submit=null;}
 $('#form').addEventListener('submit',e=>{e.preventDefault();try{if(submit)submit();close();}catch(err){$('#dialog-error').textContent=t(err.message);}});
 $('#cancel').onclick=close;$('#close').onclick=close;dialog.addEventListener('cancel',()=>{submit=null;});
@@ -34,7 +35,7 @@ function render(){
  const hr=el('tr'),th=el('th'),all=el('input');all.type='checkbox';all.ariaLabel=t('selectAll');all.checked=visible.length>0&&visible.every(e=>selected.has(keyOf(e)));all.indeterminate=visible.some(e=>selected.has(keyOf(e)))&&!all.checked;all.onchange=()=>{visible.forEach(e=>all.checked?selected.add(keyOf(e)):selected.delete(keyOf(e)));render();};th.append(all);hr.append(th);cols.forEach(c=>hr.append(el('th',t(c))));hr.append(el('th',''));$('#thead').replaceChildren(hr);$('#tbody').replaceChildren();
  for(const e of visible){const row=el('tr',undefined,selected.has(keyOf(e))?'selected':''),cell=el('td'),check=el('input');check.type='checkbox';check.checked=selected.has(keyOf(e));check.ariaLabel=String(e.name||e.value.name||e.value.unitTypeName||e.value.unitType);check.onchange=()=>{check.checked?selected.add(keyOf(e)):selected.delete(keyOf(e));render();};cell.append(check);row.append(cell);
   const v=e.value;let values=tab==='crew'?[label(v.name||v.crewTemplate),location(e),...['gunnery','loading','driving','command'].map(k=>v[k+'Proficiency']?.level??0)]:tab==='vehicles'?[label(v.unitTypeName||v.unitType),v.unitCallsign||'—',location(e),v.crew.crewMembers.length,v.moduleInstances.length,t(v.isHeavilyDamaged?'yes':'no')]:[label(e.name),e.count];
-  values.forEach((value,i)=>{const td=el('td',String(value),i===0?'name':typeof value==='number'?'num':'');if(i===0&&tab==='crew'&&v.name!==v.crewTemplate)td.append(el('span',label(v.crewTemplate),'sub'));row.append(td);});const editCell=el('td');editCell.append(button('edit',()=>editDialog(e),'row-edit'));row.append(editCell);$('#tbody').append(row);
+  values.forEach((value,i)=>{const td=el('td',String(value),i===0?'name':typeof value==='number'?'num':'');if(i===0&&tab==='crew'&&v.name!==v.crewTemplate)td.append(el('span',label(v.crewTemplate),'sub'));row.append(td);});const editCell=el('td');editCell.append(button('edit',()=>editDialog(e),'row-edit'));if(tab==='vehicles')editCell.append(button('loadout',()=>{if(!equipment)throw Error('equipmentUnavailable');loadoutDialog(e,equipment,{el,t,label,button,modal,body,change,model});},'row-edit loadout-button'));row.append(editCell);$('#tbody').append(row);
  }
  $('#empty').hidden=visible.length>0;$('#counts').textContent=`${visible.length} ${t('shown')} · ${counts.crew} ${t('crew')} / ${counts.vehicles} ${t('vehicles')} / ${counts.modules} ${t('modules')}`;
 }
@@ -71,3 +72,5 @@ window.addEventListener('beforeunload',e=>{if(model?.dirty){e.preventDefault();e
 let dragDepth=0;window.addEventListener('dragenter',e=>{e.preventDefault();dragDepth++;document.body.classList.add('drag');});window.addEventListener('dragover',e=>e.preventDefault());window.addEventListener('dragleave',()=>{if(--dragDepth<=0)document.body.classList.remove('drag');});window.addEventListener('drop',e=>{e.preventDefault();dragDepth=0;document.body.classList.remove('drag');openFile(e.dataTransfer.files[0]);});
 window.addEventListener('keydown',e=>{if(dialog.open||['INPUT','TEXTAREA','SELECT'].includes(document.activeElement.tagName))return;if((e.ctrlKey||e.metaKey)&&e.key==='z'){e.preventDefault();$('#undo').click();}if((e.ctrlKey||e.metaKey)&&e.key==='s'){e.preventDefault();$('#download').click();}});
 render();try{const response=await fetch('./catalog.json');if(!response.ok)throw Error();catalog=await response.json();render();}catch{toast(t('noCatalog'));}
+
+try{const response=await fetch('./equipment.json');if(!response.ok)throw Error();equipment=await response.json();}catch{toast(t('equipmentUnavailable'));}
