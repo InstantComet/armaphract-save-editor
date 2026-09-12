@@ -8,7 +8,7 @@ export function loadoutDialog(entry,data,ui){
  const {el,t,label,button,modal,body,change,model}=ui;
  const draft=copy(entry.value),stock=[...model.data.moduleStorage],definition=data.vehicles[draft.unitType];
  if(!definition)throw Error('unknownEquipment');
- let forced=false,slotId=(definition.slots.find(s=>!s.fixed)||definition.slots[0])?.id,member=null,searchText='',candidate='',source='stock',overviewOpen=false;
+ let forced=false,slotId=(definition.slots.find(s=>!s.fixed)||definition.slots[0])?.id,member=null,searchText='',candidate='',source='stock',overviewOpen=true;
  modal(t('loadout')+' · '+label(draft.unitTypeName||draft.unitType),()=>change(()=>{entry.value.moduleInstances=draft.moduleInstances;model.data.moduleStorage=stock;}));
  document.querySelector('#dialog').classList.add('equipment-dialog');
  const layout=el('div',undefined,'armory-layout'),board=el('section',undefined,'armory-board'),inventory=el('section',undefined,'armory-inventory');
