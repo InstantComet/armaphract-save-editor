@@ -1,5 +1,5 @@
 import './armory-i18n.js?v=armory-2';
-import {loadoutDialog} from './equipment-ui.js?v=armor-open-8';
+import {loadoutDialog} from './equipment-ui.js?v=armor-bars-9';
 import {SaveModel,copy} from './model.js';
 import {strings} from './i18n.js';
 const $=s=>document.querySelector(s), el=(tag,text,cls)=>{const n=document.createElement(tag);if(text!==undefined)n.textContent=text;if(cls)n.className=cls;return n;};
