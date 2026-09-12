@@ -65,13 +65,13 @@ export function loadoutDialog(entry,data,ui){
   const stats=equipmentStats(draft,data),top=el('div',undefined,'armory-overview'),armor=el('section',undefined,'armor-panel game-panel'),vision=el('section',undefined,'vision-panel game-panel');
   armor.append(el('h3',t('armor')));const scheme=el('div',undefined,'armor-scheme'),hull=el('div'),turret=el('div');
   hull.append(el('h4',t('hull')));turret.append(el('h4',t('turret')));
-  function facing(a,parent){const row=el('div',undefined,'armor-facing');row.append(el('span',t(sides[a.side]),'facing-name'));const values=el('div',undefined,'armor-values');
+  function facing(a,parent){const row=el('div',undefined,'armor-facing');row.append(el('span',t(a.side===4?'Frontal':a.side===5?'Rear':sides[a.side]),'facing-name'));const values=el('div',undefined,'armor-values');
    const ratings=[[a.base,'base',t('baseArmor')]];
    if(a.builtIn)ratings.push([a.builtIn,'base built-in',t('builtInArmor')]);
    const protection=new Map();for(const m of a.contributions){const key=t(m.type)+' +'+fmt(m.rating);const item=protection.get(key)||{rating:m.rating,count:0,names:[]};item.count++;item.names.push(label(m.name));protection.set(key,item);}
    for(const [key,m] of protection)ratings.push([m.rating,'addon',t('moduleArmor')+' · '+key+(m.count>1?' ×'+m.count:'')+' · '+m.names.join(', '),m.count]);
    for(const [value,kind,caption,count=1] of ratings){const line=el('div',undefined,'armor-line'),bar=el('span',undefined,'armor-bar '+kind);bar.style.width=Math.max(0,Math.min(value,36)*4)+'px';bar.title=caption+': '+fmt(value);line.title=bar.title;line.append(bar,el('span',fmt(value)+(count>1?' ×'+count:''),'armor-number'));values.append(line);}
-   if(a.contributions.length){const bonuses=el('div',undefined,'armor-bonuses');const grouped=new Map();for(const m of a.contributions){const key=t(m.type)+' +'+fmt(m.rating);grouped.set(key,(grouped.get(key)||0)+1);}for(const [text,count] of grouped){const chip=el('span',text+(count>1?' ×'+count:''));chip.title=a.contributions.map(m=>label(m.name)+' · '+t(m.type)+' +'+fmt(m.rating)).join('\n');bonuses.append(chip);}values.append(bonuses);}row.append(values);parent.append(row);
+   row.append(values);parent.append(row);
   }
   stats.armor.slice(0,4).forEach(a=>facing(a,hull));stats.armor.slice(4).forEach(a=>facing(a,turret));
   const schematic=el('div',undefined,'schematic');schematic.append(chassisDiagram(),el('small',t('schematic')));scheme.append(hull,schematic,turret);armor.append(scheme);
