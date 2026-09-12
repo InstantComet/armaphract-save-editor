@@ -23,7 +23,7 @@
 .module-tile .module-icon, .inventory-module .module-icon { width: 16px; height: 16px; margin: 0; }
 .module-tile>span, .inventory-module>span { font-size: 12px; line-height: 13px; letter-spacing: 0; white-space: nowrap; display: block; overflow: hidden; text-overflow: ellipsis; }
 .module-tile.empty-mount { display: flex; flex-direction: row; align-items: center; justify-content: center; padding: 0; border-style: solid; }
-.empty-mount>.free-capacity { font-size: 26px; line-height: 1; color: #bfa46b; }
+.empty-mount>.free-capacity { flex: 1; text-align: center; font-size: 26px; line-height: 1; color: #bfa46b; }
 .draggable-module { touch-action: none; cursor: grab; user-select: none; }
 .mount-card.drop-target { outline: 2px solid var(--amber); background: #ffd36b20; }
 .module-drag-ghost { position: fixed; pointer-events: none; z-index: 100; opacity: .85; margin: 0; box-sizing: border-box; }
