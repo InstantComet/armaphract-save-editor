@@ -94,7 +94,12 @@ export function loadoutDialog(entry,data,ui){
     const free=Math.max(0,slot.size-used);
     if(free){const empty=button('emptySlot',()=>choose(slot),'module-tile empty-mount');empty.replaceChildren();empty.style.setProperty('--module-size',free);empty.dataset.freeSize=free;empty.setAttribute('aria-label',t('emptySlot')+' #'+slot.id+' · '+free+'×1');empty.title=t('emptySlot')+' · '+free+'×1';for(let cell=0;cell<free;cell++){const mark=el('span','+','free-capacity');mark.setAttribute('aria-hidden','true');empty.append(mark);}tiles.append(empty);}
     if(!members.length&&slot.size===0)tiles.append(button('emptySlot',()=>choose(slot),'module-tile empty-mount'));
-    const limits=el('div',undefined,'mount-limits');limits.title=slot.maxGuns+' '+t('guns')+' · '+slot.maxEngines+' '+t('engines');limits.setAttribute('aria-label',limits.title);for(const [count,kind] of [[slot.maxGuns,'weapon'],[slot.maxEngines,'engine']])if(count){const marks=el('span','▪'.repeat(count),kind);marks.setAttribute('aria-hidden','true');limits.append(marks);}card.append(tiles,limits);
+    const limits=el('div',undefined,'mount-limits'),limitLabels=[];
+    for(const [count,kind,key,caption] of [[slot.maxGuns,'weapon','gun','guns'],[slot.maxEngines,'engine','engine','engines']]){
+     const occupied=members.filter(m=>data.modules[m.module]?.[key]).length;limitLabels.push(occupied+'/'+count+' '+t(caption));
+     if(count||occupied){const marks=el('span',undefined,'limit-marks '+kind);marks.setAttribute('aria-hidden','true');for(let n=0;n<Math.max(count,occupied);n++)marks.append(el('span',undefined,'limit-square'+(n<occupied?' filled':'')+(n>=count?' overflow':'')));limits.append(marks);}
+    }
+    limits.title=limitLabels.join(' · ');limits.setAttribute('aria-label',limits.title);card.append(tiles,limits);
     if(hardpoint)slots.append(card);else{if(!buckets.has(slot.side)){const bucket=el('div',undefined,'side-bucket side-'+slot.side);buckets.set(slot.side,bucket);slots.append(bucket);}buckets.get(slot.side).append(card);}
    }group.append(slots);groups.append(group);
   }board.append(groups);
