@@ -1,0 +1,57 @@
+/* One shared cell scale for mounted modules, free space and inventory. */
+.equipment-dialog { --cell: 44px; --cell-gap: 2px; width: min(1080px,calc(100vw - 28px)); height: min(860px,calc(100dvh - 28px)); }
+.mount-groups { display: grid; grid-template-columns: 40% minmax(0,1fr); align-items: stretch; gap: 8px; }
+.mount-group { width: auto; padding: 8px; }
+.hardpoint-list { display: grid; grid-template-columns: max-content; gap: 4px; max-width: none; }
+.open-mount-map { width: max-content; grid-template-columns: repeat(3, max-content); gap: 6px 8px; }
+.side-bucket { gap: 4px; }
+.mount-card { width: max-content; padding: 3px; }
+.mount-heading { width: auto; min-width: 100%; font-size: 10px; gap: 5px; padding-bottom: 3px; }
+.mount-capacity { margin-left: 6px; }
+.fixed-label { font-size: 8px; }
+.mount-limits { margin-top: 3px; gap: 6px; font-size: 8px; }
+.module-tiles {
+ display: grid; grid-template-columns: repeat(var(--slot-columns,var(--slot-size,1)), var(--cell));
+ grid-auto-rows: var(--cell); grid-auto-flow: row; gap: var(--cell-gap);
+ width: max-content; min-width: 0; min-height: 0; padding: 2px;
+}
+.module-tile, .mount-card .module-tile, .inventory-module {
+ grid-column: span var(--module-size,1); grid-row: span var(--module-height,1);
+ width: auto; height: auto; min-width: 0; min-height: 0; max-width: none;
+ margin: 0; padding: 3px; border-width: 1px; flex: none;
+}
+.module-tile .module-icon, .inventory-module .module-icon { width: 15px; height: 15px; margin: 0; }
+.module-tile>span, .inventory-module>span { font-size: 10px; line-height: 11px; letter-spacing: 0; white-space: nowrap; display: block; overflow: hidden; text-overflow: ellipsis; }
+.module-tile.empty-mount { display: flex; flex-direction: row; align-items: stretch; justify-content: stretch; gap: var(--cell-gap); padding: 0; }
+.empty-mount>.empty-cell { flex: 1; display: flex; align-items: center; justify-content: center; font-size: 22px; line-height: 1; color: #a38a56; }
+.empty-mount>.empty-cell + .empty-cell { border-left: 1px solid #74665055; }
+.inventory-grid {
+ display: grid; grid-template-columns: repeat(auto-fill,var(--cell)); grid-auto-rows: var(--cell);
+ grid-auto-flow: row dense; gap: var(--cell-gap); align-content: start; justify-content: start;
+ padding: 6px 8px; background-size: calc(var(--cell) + var(--cell-gap)) calc(var(--cell) + var(--cell-gap));
+}
+.inventory-module[aria-pressed=true] { border-width: 1px; padding: 3px; box-shadow: inset 0 0 0 1px #ffd35c; }
+.stock-count { font-size: 8px; top: 1px; right: 2px; line-height: 10px; }
+.catalog-empty { grid-column: 1/-1; font-size: 11px; padding: 6px; }
+.inventory-toolbar { padding: 6px 8px; gap: 8px; }
+.inventory-footer { padding: 6px 8px; }
+.inventory-actions button { padding: 5px 8px; }
+.armory-board { padding-right: 2px; }
+.armory-layout { gap: 7px; }
+.overview-drawer { margin-bottom: 5px; }
+.overview-drawer>summary { padding: 3px 5px; }
+.game-panel h3 { margin-bottom: 6px; }
+@media(max-width:700px) {
+ .equipment-dialog { --cell: 32px; width: calc(100vw - 8px); height: calc(100dvh - 8px); }
+ .mount-groups { display: flex; flex-direction: column; gap: 6px; }
+ .mount-group { max-width: 100%; overflow-x: auto; padding: 5px; }
+ .hardpoint-list { grid-template-columns: max-content; gap: 4px; }
+ .open-mount-map { gap: 5px; }
+ .mount-heading { font-size: 9px; }
+ .inventory-grid { padding: 5px; }
+ .module-tile, .mount-card .module-tile, .inventory-module { padding: 2px; }
+ .inventory-module[aria-pressed=true] { padding: 2px; }
+ .module-tile .module-icon, .inventory-module .module-icon { width: 13px; height: 13px; }
+ .module-tile>span, .inventory-module>span { font-size: 8px; line-height: 9px; }
+ .inventory-toolbar { gap: 5px; }
+}
