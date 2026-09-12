@@ -1,0 +1,18 @@
+import {test} from 'node:test';
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+import {SaveModel,copy} from '../model.js';
+const catalog=JSON.parse(readFileSync(new URL('../catalog.json',import.meta.url)));
+const crew=(id)=>({id,name:'Crew',crewRole:5});
+const vehicle=(id)=>({id,unitType:'S-92',unitTypeName:'S-92',unitCallsign:null,crew:{crewMembers:[]},moduleInstances:[{module:'E80 Engine'}]});
+const fixture=()=>JSON.stringify({gameVersion:'0.6.3',gameData:{playerFaction:'Player',playerSquad:[vehicle(1),vehicle(2)],motorPool:[vehicle(3)],crewBarracks:[crew(4)],crewAidbay:[],crewTraining:[],crewInstructor:[],moduleStorage:['E80 Engine'],campaignData:{custom:['untouched',1.123456789]},unknown:{nested:true}}});
+test('all 44 vehicles, 19 crew templates, 91 modules round-trip with unique IDs',()=>{const m=new SaveModel(fixture());m.change(()=>{for(const kind of ['vehicles','crew'])for(const e of catalog[kind])m.add(kind,e.template);for(const name of catalog.modules)m.add('modules',name);});const loaded=new SaveModel(m.serialize());assert.equal(loaded.vehicles().length,47);assert.equal(loaded.crew().length,20);assert.equal(loaded.data.moduleStorage.length,92);assert.deepEqual(loaded.data.unknown,{nested:true});assert.deepEqual(loaded.root,m.root);});
+test('crew dismissal and undo',()=>{const m=new SaveModel(fixture()),before=copy(m.root);m.change(()=>m.dismiss(m.crew()[0]));assert.equal(m.crew().length,0);m.undo();assert.deepEqual(m.root,before);});
+test('vehicle removal returns crew and modules',()=>{const m=new SaveModel(fixture());m.data.motorPool[0].crew.crewMembers.push(crew(5));m.change(()=>m.removeVehicle(m.vehicles()[2]));assert.equal(m.data.crewBarracks.length,2);assert.equal(m.data.moduleStorage.length,2);});
+test('multi-step invalid removal rolls back transaction',()=>{const m=new SaveModel(fixture()),before=copy(m.root);assert.throws(()=>m.change(()=>{for(const e of m.vehicles().filter(e=>e.location==='playerSquad'))m.removeVehicle(e);}),/lastVehicle/);assert.deepEqual(m.root,before);assert.equal(m.history.length,0);});
+test('reference protection prevents dangling references',()=>{const m=new SaveModel(fixture());m.data.someReference=4;assert.throws(()=>m.change(()=>m.dismiss(m.crew()[0])),/referenced/);});
+test('duplicate IDs and score files rejected',()=>{const d=JSON.parse(fixture());d.gameData.motorPool[0].id=1;assert.throws(()=>new SaveModel(JSON.stringify(d)),/invalidIds/);assert.throws(()=>new SaveModel('{"scores":[]}'),/invalidSave/);});
+test('unsafe integers rejected instead of silently corrupted',()=>assert.throws(()=>new SaveModel(fixture().replace('1.123456789','9007199254740993')),/unsafeNumber/));
+test('null callsign can be edited as string',()=>{const m=new SaveModel(fixture());m.change(()=>m.data.motorPool[0].unitCallsign='猎鹰 FALCON-01');assert.equal(new SaveModel(m.serialize()).data.motorPool[0].unitCallsign,'猎鹰 FALCON-01');});
+test('module quantities support zero and reject fractions',()=>{const m=new SaveModel(fixture());m.change(()=>m.quantity('E80 Engine',0));assert.equal(m.data.moduleStorage.length,0);assert.throws(()=>m.change(()=>m.quantity('E80 Engine',1.2)),/invalidNumber/);});
+test('special vehicles retain distinct game loadouts',()=>{for(const name of ['K-75BM Mod.','S-92 Siegebreaker']){const preset=catalog.vehicles.find(v=>v.name===name).template,base=catalog.vehicles.find(v=>v.name===preset.unitType).template;assert.notDeepEqual(preset.moduleInstances,base.moduleInstances);const m=new SaveModel(fixture());m.change(()=>m.add('vehicles',preset));assert.equal(m.data.motorPool.at(-1).unitTypeName,name);assert.deepEqual(m.data.motorPool.at(-1).moduleInstances,preset.moduleInstances);}});
