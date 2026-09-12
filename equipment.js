@@ -25,6 +25,14 @@ export function installModule(vehicle,slot,name,data,force=false){
  }
  vehicle.moduleInstances.push({module:name,side:slot.side,originalSlotID:id,isPrimaryWeapon:slot.primary});
 }
+export function replaceModule(vehicle,instance,slot,name,data,force=false){
+ const index=vehicle.moduleInstances.indexOf(instance);if(index<0)throw Error('selection');
+ const candidate={moduleInstances:vehicle.moduleInstances.filter((_,i)=>i!==index)};
+ installModule(candidate,slot,name,data,force);
+ const added=candidate.moduleInstances.pop();
+ vehicle.moduleInstances.splice(index,1,added);
+ return instance.module;
+}
 export function equipmentStats(vehicle,data){
  const base=data.vehicles[vehicle.unitType];if(!base)return null;
  const modules=vehicle.moduleInstances.map(m=>({instance:m,info:data.modules[m.module]}));

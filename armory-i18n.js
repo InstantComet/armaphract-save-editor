@@ -1,0 +1,11 @@
+import {strings} from './i18n.js';
+
+Object.assign(strings.en,{
+ hull:'Hull',turret:'Turret',schematic:'SCHEMATIC',hardpoints:'Hardpoints',openMounts:'Open slots',moduleInventory:'Module inventory',warehouseSource:'In storage',catalogSource:'All modules · create',forceShort:'Force fit',details:'Details & calculation notes',replaceModule:'Replace module',addInstead:'Add to slot instead',moduleSize:'Size',noStock:'This module is no longer in storage.',inventoryHint:'Select a module below, then install. Double-click to install directly.',replaceHint:'Choose a replacement below. The removed module returns to storage.',fixedHelp:'This mount is fixed. Enable Force fit to edit it.',noCompatibleStock:'No compatible modules in storage. Select “All modules · create” to add from the full catalog, or choose another slot.',slotFullHelp:'No modules fit. Select an installed module to replace it, or enable Force fit.',forceHint:'Force fit creates extra mounts for incompatible or oversized modules. These survive 0.6.3 loading, but may not appear in the in-game armory.',equipmentHint:'In storage consumes warehouse stock; All modules creates new modules. Removed modules return to storage. Apply saves the entire loadout edit; Cancel discards it.',title:'Company armory.',eyebrow:'ARMAPHRACT / CAMPAIGN OPERATIONS',subtitle:'Crew roster, vehicle loadouts and module inventory. Local save editing.'
+});
+Object.assign(strings.zh,{
+ hull:'车体',turret:'炮塔',schematic:'布局示意',hardpoints:'挂点',openMounts:'开放槽位',moduleInventory:'模块库存',warehouseSource:'已有库存',catalogSource:'全部模块 · 创建',forceShort:'强制安装',details:'详细属性与计算说明',replaceModule:'更换模块',addInstead:'改为添加到槽位',moduleSize:'尺寸',noStock:'仓库中已没有该模块。',inventoryHint:'在下方选择模块后安装，也可以双击模块直接安装。',replaceHint:'在下方选择替换模块，卸下的原模块会退回仓库。',fixedHelp:'此挂点不可拆卸。开启“强制安装”可编辑。',noCompatibleStock:'库存中没有适配模块。选择“全部模块 · 创建”可从完整目录添加，或选择其他槽位。',slotFullHelp:'没有可安装的模块。请选择槽内已有模块进行更换，或开启强制安装。',forceHint:'强制安装使用扩展挂点容纳不兼容或超尺寸模块。已验证可通过 0.6.3 读档，但游戏军械库可能不显示扩展挂点。',equipmentHint:'“已有库存”消耗仓库模块，“全部模块”直接创建。卸下的模块退回仓库。应用保存本次配置修改，取消则全部放弃。',title:'连队军械库',eyebrow:'ARMAPHRACT / 战役管理',subtitle:'乘员编制、载具配置与模块库存。本地存档编辑。'
+});
+
+Object.assign(strings.en,{turretFront:"Turret F",turretRear:"Turret R",overview:"Armor & vision"});
+Object.assign(strings.zh,{turretFront:"炮塔 F",turretRear:"炮塔 R",overview:"装甲与观瞄"});

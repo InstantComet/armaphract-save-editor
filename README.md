@@ -6,7 +6,9 @@ A static, bilingual save editor for ARMAPHRACT 0.6.3. All save processing happen
 
 - Crew: add, edit name/proficiencies/skills/healing, dismiss, return to barracks.
 - Vehicles: 38 base types + 6 actual special presets, edit callsign/paint/damage/repair supply, clone, move to motor pool, remove and recover crew/modules.
-- Vehicle loadouts: real slot sizes, facings, fixed mounts and weapon/engine limits; install from the catalog, uninstall to storage, and opt into incompatible/over-capacity/fixed-slot editing.
+- Vehicle loadouts: game-style hardpoints and directional open-slot map above a persistent module inventory. Select an empty cell to install, or an existing module to replace/uninstall. Slot sizes, fixed mounts and weapon/engine limits come from the game.
+- Inventory sources: consume existing warehouse stock, or create any of the 91 catalog modules. Removed/replaced modules return to stock; the whole edit can be cancelled. Double-click an inventory module to install quickly.
+- Game-inspired dark/amber palette, module category colors, native module abbreviations and segmented armor bars. SVG symbols and the labeled chassis schematic are editor artwork.
 - Equipment overview: base and built-in armor by facing, separate module armor ratings, optics, infrared/thermal capabilities, sensors and mass.
 - Module storage: 91 modules, add quantities, edit stock, remove.
 - English / Chinese toggle, search, multiselect, undo (40 steps).
@@ -21,7 +23,7 @@ Open the website, choose or drop `savedata.json`, edit, download the original ba
 
 Default save location: `%USERPROFILE%\AppData\LocalLow\aeoridev\armaphract\savedata.json`.
 
-New vehicles have no crew. Assign crew in-game. The Modules tab adds warehouse stock. Open **Loadout & stats** on a vehicle to install new modules directly or return installed modules to storage. Apply commits the whole dialog; Cancel discards it. Storage capacity is not increased automatically. Special/test units and duplicate story characters may affect gameplay and story behavior; retain your original save. Unknown save fields are preserved; numbers outside JavaScript's safe integer range are rejected.
+New vehicles have no crew. Assign crew in-game. The Modules tab adds warehouse stock. Open **Loadout & stats** on a vehicle, select a slot in the upper map and choose a compatible module in the lower inventory. The bottom inventory stays in view while the map scrolls. **In storage** consumes stock; **All modules · create** creates a new item. **Armor & vision** expands the stat panel. Apply commits the whole dialog; Cancel discards it. Storage capacity is not increased automatically. Special/test units and duplicate story characters may affect gameplay and story behavior; retain your original save. Unknown save fields are preserved; numbers outside JavaScript's safe integer range are rejected.
 
 ## Development
 

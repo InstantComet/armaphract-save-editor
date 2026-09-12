@@ -14812,7 +14812,9 @@
         "turretTraverseSpeed": 0
       },
       "engine": false,
-      "gun": false
+      "gun": false,
+      "shortName": "Troop Bay L",
+      "moduleShortName": "4D/S"
     },
     "Troop Bay M (Assault)": {
       "size": 3,
@@ -14828,7 +14830,9 @@
         "turretTraverseSpeed": 0
       },
       "engine": false,
-      "gun": false
+      "gun": false,
+      "shortName": "Troop Bay M",
+      "moduleShortName": "3D/S"
     },
     "Troop Bay M (SF)": {
       "size": 3,
@@ -14844,7 +14848,9 @@
         "turretTraverseSpeed": 0
       },
       "engine": false,
-      "gun": false
+      "gun": false,
+      "shortName": "Troop Bay SF",
+      "moduleShortName": "3S/RC"
     },
     "Troop Bay S (Antitank)": {
       "size": 2,
@@ -14860,7 +14866,9 @@
         "turretTraverseSpeed": 0
       },
       "engine": false,
-      "gun": false
+      "gun": false,
+      "shortName": "Troop Bay S",
+      "moduleShortName": "2D/AT"
     },
     "Troop Bay S (Recon)": {
       "size": 2,
@@ -14876,7 +14884,9 @@
         "turretTraverseSpeed": 0
       },
       "engine": false,
-      "gun": false
+      "gun": false,
+      "shortName": "Troop Bay S",
+      "moduleShortName": "2D/RC"
     },
     "Active Phased Sensor": {
       "size": 1,
@@ -14897,7 +14907,9 @@
         "advanced": true
       },
       "engine": false,
-      "gun": false
+      "gun": false,
+      "shortName": "Active Sensor",
+      "moduleShortName": "SA1"
     },
     "Lightweight Passive Sensor": {
       "size": 1,
@@ -14918,7 +14930,9 @@
         "advanced": false
       },
       "engine": false,
-      "gun": false
+      "gun": false,
+      "shortName": "Passive Sensor",
+      "moduleShortName": "SP1L"
     },
     "Passive Emission Sensor": {
       "size": 1,
@@ -14939,7 +14953,9 @@
         "advanced": false
       },
       "engine": false,
-      "gun": false
+      "gun": false,
+      "shortName": "Passive Sensor",
+      "moduleShortName": "SP1"
     },
     "Passive Wideband Array": {
       "size": 3,
@@ -14960,7 +14976,9 @@
         "advanced": true
       },
       "engine": false,
-      "gun": false
+      "gun": false,
+      "shortName": "Passive Sensor",
+      "moduleShortName": "SP2"
     },
     "2E50 Engine": {
       "size": 3,
@@ -14976,7 +14994,9 @@
         "turretTraverseSpeed": 5
       },
       "engine": true,
-      "gun": false
+      "gun": false,
+      "shortName": "Dual Engine",
+      "moduleShortName": "2e50"
     },
     "E20 Support Engine": {
       "size": 1,
@@ -14992,7 +15012,9 @@
         "turretTraverseSpeed": 20
       },
       "engine": true,
-      "gun": false
+      "gun": false,
+      "shortName": "Support Engine",
+      "moduleShortName": "e20"
     },
     "E45 Engine": {
       "size": 2,
@@ -15008,7 +15030,9 @@
         "turretTraverseSpeed": 8
       },
       "engine": true,
-      "gun": false
+      "gun": false,
+      "shortName": "Engine",
+      "moduleShortName": "e45"
     },
     "E66 Engine": {
       "size": 2,
@@ -15024,7 +15048,9 @@
         "turretTraverseSpeed": 5
       },
       "engine": true,
-      "gun": false
+      "gun": false,
+      "shortName": "Engine",
+      "moduleShortName": "e66"
     },
     "E73 Engine": {
       "size": 3,
@@ -15040,7 +15066,9 @@
         "turretTraverseSpeed": 5
       },
       "engine": true,
-      "gun": false
+      "gun": false,
+      "shortName": "Engine",
+      "moduleShortName": "e73"
     },
     "E80 Engine": {
       "size": 2,
@@ -15056,7 +15084,9 @@
         "turretTraverseSpeed": 8
       },
       "engine": true,
-      "gun": false
+      "gun": false,
+      "shortName": "Engine",
+      "moduleShortName": "e80"
     },
     "Legs": {
       "size": 1,
@@ -15072,7 +15102,9 @@
         "turretTraverseSpeed": 0
       },
       "engine": true,
-      "gun": false
+      "gun": false,
+      "shortName": "",
+      "moduleShortName": "LEG"
     },
     "VKE23": {
       "size": 1,
@@ -15088,7 +15120,9 @@
         "turretTraverseSpeed": 0
       },
       "engine": true,
-      "gun": false
+      "gun": false,
+      "shortName": "Light Engine",
+      "moduleShortName": "e23"
     },
     "VKE70": {
       "size": 2,
@@ -15104,7 +15138,9 @@
         "turretTraverseSpeed": 0
       },
       "engine": true,
-      "gun": false
+      "gun": false,
+      "shortName": "Engine",
+      "moduleShortName": "e70"
     },
     "Applique (Composite)": {
       "size": 1,
@@ -15125,7 +15161,9 @@
         "minPenetrationFactor": 0
       },
       "engine": false,
-      "gun": false
+      "gun": false,
+      "shortName": "Applique",
+      "moduleShortName": "APQC"
     },
     "Applique (Light)": {
       "size": 1,
@@ -15146,7 +15184,9 @@
         "minPenetrationFactor": 0
       },
       "engine": false,
-      "gun": false
+      "gun": false,
+      "shortName": "Applique",
+      "moduleShortName": "APQL"
     },
     "Camo Netting": {
       "size": 1,
@@ -15162,7 +15202,9 @@
         "turretTraverseSpeed": 0
       },
       "engine": false,
-      "gun": false
+      "gun": false,
+      "shortName": "Netting",
+      "moduleShortName": "CMO"
     },
     "ERA (Advanced)": {
       "size": 1,
@@ -15183,7 +15225,9 @@
         "minPenetrationFactor": 0.3
       },
       "engine": false,
-      "gun": false
+      "gun": false,
+      "shortName": "AERA",
+      "moduleShortName": "AERA"
     },
     "ERA (Simple)": {
       "size": 1,
@@ -15204,7 +15248,9 @@
         "minPenetrationFactor": 0.2
       },
       "engine": false,
-      "gun": false
+      "gun": false,
+      "shortName": "ERA",
+      "moduleShortName": "ERA"
     },
     "2AT2 Launcher": {
       "size": 2,
@@ -15220,7 +15266,9 @@
         "turretTraverseSpeed": 0
       },
       "engine": false,
-      "gun": false
+      "gun": false,
+      "shortName": "ATGM",
+      "moduleShortName": "2AT2"
     },
     "2R4T Launcher": {
       "size": 2,
@@ -15236,7 +15284,9 @@
         "turretTraverseSpeed": 0
       },
       "engine": false,
-      "gun": false
+      "gun": false,
+      "shortName": "Launcher",
+      "moduleShortName": "2R4T"
     },
     "3AT2 Launcher": {
       "size": 3,
@@ -15252,7 +15302,9 @@
         "turretTraverseSpeed": 0
       },
       "engine": false,
-      "gun": false
+      "gun": false,
+      "shortName": "ATGM",
+      "moduleShortName": "3AT2 INT"
     },
     "3R2 MLRS": {
       "size": 3,
@@ -15268,7 +15320,9 @@
         "turretTraverseSpeed": 0
       },
       "engine": false,
-      "gun": false
+      "gun": false,
+      "shortName": "MLRS",
+      "moduleShortName": "3R2 MLRS"
     },
     "3R8 Launcher": {
       "size": 3,
@@ -15284,7 +15338,9 @@
         "turretTraverseSpeed": 0
       },
       "engine": false,
-      "gun": false
+      "gun": false,
+      "shortName": "Launcher",
+      "moduleShortName": "3R8"
     },
     "AT1 Launcher": {
       "size": 1,
@@ -15300,7 +15356,9 @@
         "turretTraverseSpeed": 0
       },
       "engine": false,
-      "gun": false
+      "gun": false,
+      "shortName": "ATGM",
+      "moduleShortName": "AT1"
     },
     "E1 Launcher": {
       "size": 1,
@@ -15316,7 +15374,9 @@
         "turretTraverseSpeed": 0
       },
       "engine": false,
-      "gun": false
+      "gun": false,
+      "shortName": "ATGM",
+      "moduleShortName": "ET1"
     },
     "R2 Pod": {
       "size": 1,
@@ -15332,7 +15392,9 @@
         "turretTraverseSpeed": 0
       },
       "engine": false,
-      "gun": false
+      "gun": false,
+      "shortName": "Launcher",
+      "moduleShortName": "R2"
     },
     "R4T Launcher": {
       "size": 1,
@@ -15348,7 +15410,9 @@
         "turretTraverseSpeed": 0
       },
       "engine": false,
-      "gun": false
+      "gun": false,
+      "shortName": "Launcher",
+      "moduleShortName": "R4T"
     },
     "R8 Launcher": {
       "size": 1,
@@ -15364,7 +15428,9 @@
         "turretTraverseSpeed": 0
       },
       "engine": false,
-      "gun": false
+      "gun": false,
+      "shortName": "Launcher",
+      "moduleShortName": "R8"
     },
     "R8K Screen Launcher": {
       "size": 1,
@@ -15380,7 +15446,9 @@
         "turretTraverseSpeed": 0
       },
       "engine": false,
-      "gun": false
+      "gun": false,
+      "shortName": "Launcher",
+      "moduleShortName": "R8K"
     },
     "RS30 RPG": {
       "size": 1,
@@ -15396,7 +15464,9 @@
         "turretTraverseSpeed": 0
       },
       "engine": false,
-      "gun": false
+      "gun": false,
+      "shortName": "RPG",
+      "moduleShortName": "RS30"
     },
     "M5T Trauma Kit": {
       "size": 1,
@@ -15412,7 +15482,9 @@
         "turretTraverseSpeed": 0
       },
       "engine": false,
-      "gun": false
+      "gun": false,
+      "shortName": "Trauma Kit",
+      "moduleShortName": "AID"
     },
     "Armored Sights": {
       "size": 1,
@@ -15436,7 +15508,9 @@
         "passiveIR": false
       },
       "engine": false,
-      "gun": false
+      "gun": false,
+      "shortName": "Optics",
+      "moduleShortName": "AOPT"
     },
     "Improvised Optics": {
       "size": 1,
@@ -15460,7 +15534,9 @@
         "passiveIR": false
       },
       "engine": false,
-      "gun": false
+      "gun": false,
+      "shortName": "Optics",
+      "moduleShortName": "OPT-"
     },
     "Inf. Sights": {
       "size": 1,
@@ -15484,7 +15560,9 @@
         "passiveIR": true
       },
       "engine": false,
-      "gun": false
+      "gun": false,
+      "shortName": "Optics",
+      "moduleShortName": "OPT-"
     },
     "Infared Searchlight": {
       "size": 1,
@@ -15508,7 +15586,9 @@
         "passiveIR": false
       },
       "engine": false,
-      "gun": false
+      "gun": false,
+      "shortName": "Searchlight",
+      "moduleShortName": "IOPT"
     },
     "Panoramic Optics": {
       "size": 1,
@@ -15532,7 +15612,9 @@
         "passiveIR": false
       },
       "engine": false,
-      "gun": false
+      "gun": false,
+      "shortName": "Optics",
+      "moduleShortName": "POPT"
     },
     "Stabilized Optics": {
       "size": 1,
@@ -15556,7 +15638,9 @@
         "passiveIR": false
       },
       "engine": false,
-      "gun": false
+      "gun": false,
+      "shortName": "Optics",
+      "moduleShortName": "SOPT"
     },
     "Standard Optics": {
       "size": 1,
@@ -15580,7 +15664,9 @@
         "passiveIR": true
       },
       "engine": false,
-      "gun": false
+      "gun": false,
+      "shortName": "Optics",
+      "moduleShortName": "OPT"
     },
     "Thermal Imaging Optics": {
       "size": 1,
@@ -15604,7 +15690,9 @@
         "passiveIR": false
       },
       "engine": false,
-      "gun": false
+      "gun": false,
+      "shortName": "Thermals",
+      "moduleShortName": "TOPT"
     },
     "Aktorus APS": {
       "size": 1,
@@ -15620,7 +15708,9 @@
         "turretTraverseSpeed": 0
       },
       "engine": false,
-      "gun": false
+      "gun": false,
+      "shortName": "APS",
+      "moduleShortName": "APS"
     },
     "Aoron CRAM": {
       "size": 2,
@@ -15636,7 +15726,9 @@
         "turretTraverseSpeed": 0
       },
       "engine": false,
-      "gun": false
+      "gun": false,
+      "shortName": "CRAM",
+      "moduleShortName": "CRAM"
     },
     "EPC4 Jammer": {
       "size": 1,
@@ -15652,7 +15744,9 @@
         "turretTraverseSpeed": 0
       },
       "engine": false,
-      "gun": false
+      "gun": false,
+      "shortName": "Jammer",
+      "moduleShortName": "JMR"
     },
     "Khora 2 APS": {
       "size": 1,
@@ -15668,7 +15762,9 @@
         "turretTraverseSpeed": 0
       },
       "engine": false,
-      "gun": false
+      "gun": false,
+      "shortName": "APS",
+      "moduleShortName": "APS"
     },
     "PPRV Plough": {
       "size": 2,
@@ -15684,7 +15780,9 @@
         "turretTraverseSpeed": 0
       },
       "engine": false,
-      "gun": false
+      "gun": false,
+      "shortName": "Plough",
+      "moduleShortName": "plgh"
     },
     "Engine Smokescreen": {
       "size": 1,
@@ -15700,7 +15798,9 @@
         "turretTraverseSpeed": 0
       },
       "engine": false,
-      "gun": false
+      "gun": false,
+      "shortName": "Smoke",
+      "moduleShortName": "esm"
     },
     "Smoke (Cluster Far)": {
       "size": 1,
@@ -15716,7 +15816,9 @@
         "turretTraverseSpeed": 0
       },
       "engine": false,
-      "gun": false
+      "gun": false,
+      "shortName": "Smoke",
+      "moduleShortName": "fcms"
     },
     "Smoke (Cluster)": {
       "size": 1,
@@ -15732,7 +15834,9 @@
         "turretTraverseSpeed": 0
       },
       "engine": false,
-      "gun": false
+      "gun": false,
+      "shortName": "Smoke",
+      "moduleShortName": "cms"
     },
     "Smoke (Handheld)": {
       "size": 1,
@@ -15748,7 +15852,9 @@
         "turretTraverseSpeed": 0
       },
       "engine": false,
-      "gun": false
+      "gun": false,
+      "shortName": "Smoke",
+      "moduleShortName": "hsm"
     },
     "Smoke (Line)": {
       "size": 1,
@@ -15764,7 +15870,9 @@
         "turretTraverseSpeed": 0
       },
       "engine": false,
-      "gun": false
+      "gun": false,
+      "shortName": "Smoke",
+      "moduleShortName": "lms"
     },
     "Smoke (Single)": {
       "size": 1,
@@ -15780,7 +15888,9 @@
         "turretTraverseSpeed": 0
       },
       "engine": false,
-      "gun": false
+      "gun": false,
+      "shortName": "Smoke",
+      "moduleShortName": "ssm"
     },
     "Ammo Rack": {
       "size": 1,
@@ -15796,7 +15906,9 @@
         "turretTraverseSpeed": 0
       },
       "engine": false,
-      "gun": false
+      "gun": false,
+      "shortName": "Munitions",
+      "moduleShortName": "amm1"
     },
     "Armored Magazine": {
       "size": 2,
@@ -15812,7 +15924,9 @@
         "turretTraverseSpeed": 0
       },
       "engine": false,
-      "gun": false
+      "gun": false,
+      "shortName": "Munitions",
+      "moduleShortName": "amm2"
     },
     "Carousel Magazine": {
       "size": 3,
@@ -15828,7 +15942,9 @@
         "turretTraverseSpeed": 0
       },
       "engine": false,
-      "gun": false
+      "gun": false,
+      "shortName": "Munitions",
+      "moduleShortName": "amm3"
     },
     "Exterior Stowage": {
       "size": 1,
@@ -15844,7 +15960,9 @@
         "turretTraverseSpeed": 0
       },
       "engine": false,
-      "gun": false
+      "gun": false,
+      "shortName": "Stowage",
+      "moduleShortName": "emm1"
     },
     "Infantry Storage": {
       "size": 1,
@@ -15860,7 +15978,9 @@
         "turretTraverseSpeed": 0
       },
       "engine": false,
-      "gun": false
+      "gun": false,
+      "shortName": "Munitions",
+      "moduleShortName": "ammo"
     },
     "Combat Sustenance Section": {
       "size": 4,
@@ -15876,7 +15996,9 @@
         "turretTraverseSpeed": 0
       },
       "engine": false,
-      "gun": false
+      "gun": false,
+      "shortName": "Supply",
+      "moduleShortName": "SS-C"
     },
     "Infantry Replenishment Section": {
       "size": 2,
@@ -15892,7 +16014,9 @@
         "turretTraverseSpeed": 0
       },
       "engine": false,
-      "gun": false
+      "gun": false,
+      "shortName": "Supply",
+      "moduleShortName": "SS-I"
     },
     "Large Sustenance Section": {
       "size": 5,
@@ -15908,7 +16032,9 @@
         "turretTraverseSpeed": 0
       },
       "engine": false,
-      "gun": false
+      "gun": false,
+      "shortName": "Supply",
+      "moduleShortName": "SS-L"
     },
     "Medical Compartment": {
       "size": 1,
@@ -15924,7 +16050,9 @@
         "turretTraverseSpeed": 0
       },
       "engine": false,
-      "gun": false
+      "gun": false,
+      "shortName": "Supply",
+      "moduleShortName": "SS-M"
     },
     "Ordnance Magazine": {
       "size": 2,
@@ -15940,7 +16068,9 @@
         "turretTraverseSpeed": 0
       },
       "engine": false,
-      "gun": false
+      "gun": false,
+      "shortName": "Supply",
+      "moduleShortName": "SS-O"
     },
     "A2C50 Autoloader": {
       "size": 1,
@@ -15956,7 +16086,9 @@
         "turretTraverseSpeed": 0
       },
       "engine": false,
-      "gun": false
+      "gun": false,
+      "shortName": "Autoloader",
+      "moduleShortName": "auto"
     },
     "A6L Autoloader": {
       "size": 1,
@@ -15972,7 +16104,9 @@
         "turretTraverseSpeed": 0
       },
       "engine": false,
-      "gun": false
+      "gun": false,
+      "shortName": "Autoloader",
+      "moduleShortName": "auto"
     },
     "FA Stabilizer": {
       "size": 1,
@@ -15988,7 +16122,9 @@
         "turretTraverseSpeed": 0
       },
       "engine": false,
-      "gun": false
+      "gun": false,
+      "shortName": "Stabilizer",
+      "moduleShortName": "STB"
     },
     "103mm Recoiless": {
       "size": 1,
@@ -16004,7 +16140,9 @@
         "turretTraverseSpeed": 0
       },
       "engine": false,
-      "gun": true
+      "gun": true,
+      "shortName": "Recoiless Rifle",
+      "moduleShortName": "rr"
     },
     "20mm Quadgun": {
       "size": 2,
@@ -16020,7 +16158,9 @@
         "turretTraverseSpeed": 0
       },
       "engine": false,
-      "gun": true
+      "gun": true,
+      "shortName": "4QG",
+      "moduleShortName": "4qcg"
     },
     "280mm Howitzer": {
       "size": 3,
@@ -16036,7 +16176,9 @@
         "turretTraverseSpeed": 0
       },
       "engine": false,
-      "gun": true
+      "gun": true,
+      "shortName": "Howitzer",
+      "moduleShortName": "280HZ"
     },
     "2L20 Autocannon": {
       "size": 2,
@@ -16052,7 +16194,9 @@
         "turretTraverseSpeed": 0
       },
       "engine": false,
-      "gun": true
+      "gun": true,
+      "shortName": "autocannon",
+      "moduleShortName": "ac20"
     },
     "50cal Dual Sponson": {
       "size": 1,
@@ -16068,7 +16212,9 @@
         "turretTraverseSpeed": 0
       },
       "engine": false,
-      "gun": true
+      "gun": true,
+      "shortName": "HMG",
+      "moduleShortName": "2hmg"
     },
     "50cal HMG": {
       "size": 1,
@@ -16084,7 +16230,9 @@
         "turretTraverseSpeed": 0
       },
       "engine": false,
-      "gun": true
+      "gun": true,
+      "shortName": "HMG",
+      "moduleShortName": "hmg"
     },
     "AGL3 Grenade Launcher": {
       "size": 2,
@@ -16100,7 +16248,9 @@
         "turretTraverseSpeed": 0
       },
       "engine": false,
-      "gun": true
+      "gun": true,
+      "shortName": "AGL",
+      "moduleShortName": "AGL3"
     },
     "Aoron Chaingun": {
       "size": 2,
@@ -16116,7 +16266,9 @@
         "turretTraverseSpeed": 0
       },
       "engine": false,
-      "gun": true
+      "gun": true,
+      "shortName": "Chaingun",
+      "moduleShortName": "CRAM"
     },
     "FW-202 Flamethrower": {
       "size": 2,
@@ -16132,7 +16284,9 @@
         "turretTraverseSpeed": 0
       },
       "engine": false,
-      "gun": true
+      "gun": true,
+      "shortName": "Flamethrower",
+      "moduleShortName": "f202"
     },
     "L105 Cannon": {
       "size": 3,
@@ -16148,7 +16302,9 @@
         "turretTraverseSpeed": 0
       },
       "engine": false,
-      "gun": true
+      "gun": true,
+      "shortName": "HV Cannon",
+      "moduleShortName": "L105 HV"
     },
     "L105e3 Cannon": {
       "size": 3,
@@ -16164,7 +16320,9 @@
         "turretTraverseSpeed": 0
       },
       "engine": false,
-      "gun": true
+      "gun": true,
+      "shortName": "HV Cannon",
+      "moduleShortName": "L105e3"
     },
     "L105P Cannon": {
       "size": 3,
@@ -16180,7 +16338,9 @@
         "turretTraverseSpeed": 0
       },
       "engine": false,
-      "gun": true
+      "gun": true,
+      "shortName": "HV Cannon",
+      "moduleShortName": "L105P HV"
     },
     "L120V Cannon": {
       "size": 3,
@@ -16196,7 +16356,9 @@
         "turretTraverseSpeed": 0
       },
       "engine": false,
-      "gun": true
+      "gun": true,
+      "shortName": "HV Cannon",
+      "moduleShortName": "L120V HV"
     },
     "L125 Cannon": {
       "size": 4,
@@ -16212,7 +16374,9 @@
         "turretTraverseSpeed": 0
       },
       "engine": false,
-      "gun": true
+      "gun": true,
+      "shortName": "HV Cannon",
+      "moduleShortName": "L125 HV"
     },
     "L125C Cannon": {
       "size": 3,
@@ -16228,7 +16392,9 @@
         "turretTraverseSpeed": 0
       },
       "engine": false,
-      "gun": true
+      "gun": true,
+      "shortName": "HV Cannon",
+      "moduleShortName": "L125C HV"
     },
     "L152S Cannon": {
       "size": 5,
@@ -16244,7 +16410,9 @@
         "turretTraverseSpeed": 0
       },
       "engine": false,
-      "gun": true
+      "gun": true,
+      "shortName": "HV Cannon",
+      "moduleShortName": "152S HV"
     },
     "L30 Autocannon": {
       "size": 2,
@@ -16260,7 +16428,9 @@
         "turretTraverseSpeed": 0
       },
       "engine": false,
-      "gun": true
+      "gun": true,
+      "shortName": "Autocannon",
+      "moduleShortName": "ac30"
     },
     "L30B Burst Autocannon": {
       "size": 2,
@@ -16276,7 +16446,9 @@
         "turretTraverseSpeed": 0
       },
       "engine": false,
-      "gun": true
+      "gun": true,
+      "shortName": "Autocannon",
+      "moduleShortName": "ac30b"
     },
     "L80 Cannon": {
       "size": 2,
@@ -16292,7 +16464,9 @@
         "turretTraverseSpeed": 0
       },
       "engine": false,
-      "gun": true
+      "gun": true,
+      "shortName": "LV Cannon",
+      "moduleShortName": "L80 LV"
     },
     "Rifles": {
       "size": 1,
@@ -16308,7 +16482,9 @@
         "turretTraverseSpeed": 0
       },
       "engine": false,
-      "gun": true
+      "gun": true,
+      "shortName": "Smallarms",
+      "moduleShortName": "ar1"
     },
     "RS12 Satchels": {
       "size": 1,
@@ -16324,7 +16500,9 @@
         "turretTraverseSpeed": 0
       },
       "engine": false,
-      "gun": true
+      "gun": true,
+      "shortName": "Satchels",
+      "moduleShortName": "RS12"
     },
     "RS5 Launcher": {
       "size": 1,
@@ -16340,7 +16518,9 @@
         "turretTraverseSpeed": 0
       },
       "engine": false,
-      "gun": true
+      "gun": true,
+      "shortName": "RPG",
+      "moduleShortName": "at"
     },
     "SMGs": {
       "size": 1,
@@ -16356,7 +16536,9 @@
         "turretTraverseSpeed": 0
       },
       "engine": false,
-      "gun": true
+      "gun": true,
+      "shortName": "Smallarms",
+      "moduleShortName": "ar1"
     }
   }
 }

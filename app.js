@@ -1,4 +1,5 @@
-import {loadoutDialog} from './equipment-ui.js?v=card-select-1';
+import './armory-i18n.js?v=armory-2';
+import {loadoutDialog} from './equipment-ui.js?v=armory-2';
 import {SaveModel,copy} from './model.js';
 import {strings} from './i18n.js';
 const $=s=>document.querySelector(s), el=(tag,text,cls)=>{const n=document.createElement(tag);if(text!==undefined)n.textContent=text;if(cls)n.className=cls;return n;};
@@ -73,4 +74,4 @@ let dragDepth=0;window.addEventListener('dragenter',e=>{e.preventDefault();dragD
 window.addEventListener('keydown',e=>{if(dialog.open||['INPUT','TEXTAREA','SELECT'].includes(document.activeElement.tagName))return;if((e.ctrlKey||e.metaKey)&&e.key==='z'){e.preventDefault();$('#undo').click();}if((e.ctrlKey||e.metaKey)&&e.key==='s'){e.preventDefault();$('#download').click();}});
 render();try{const response=await fetch('./catalog.json');if(!response.ok)throw Error();catalog=await response.json();render();}catch{toast(t('noCatalog'));}
 
-try{const response=await fetch('./equipment.json');if(!response.ok)throw Error();equipment=await response.json();render();}catch{toast(t('equipmentUnavailable'));}
+try{const response=await fetch('./equipment.json?v=armory-2');if(!response.ok)throw Error();equipment=await response.json();render();}catch{toast(t('equipmentUnavailable'));}
