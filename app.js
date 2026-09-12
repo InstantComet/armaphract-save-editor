@@ -1,4 +1,4 @@
-import {loadoutDialog} from './equipment-ui.js';
+import {loadoutDialog} from './equipment-ui.js?v=card-select-1';
 import {SaveModel,copy} from './model.js';
 import {strings} from './i18n.js';
 const $=s=>document.querySelector(s), el=(tag,text,cls)=>{const n=document.createElement(tag);if(text!==undefined)n.textContent=text;if(cls)n.className=cls;return n;};

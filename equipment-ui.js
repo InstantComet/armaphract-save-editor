@@ -17,8 +17,10 @@ export function loadoutDialog(entry,data,ui){
  left.replaceChildren(el('h3',t('slots')));right.replaceChildren(el('h3',t('overview')));
  for(const slot of definition.slots){
  const members=slotModules(draft,slot),used=members.reduce((n,m)=>n+(data.modules[m.module]?.size??0),0);
- const card=el('section',undefined,'slot-card'+(slot.id===slotId?' chosen':''));
- const head=button('slot',()=>{slotId=slot.id;render();},'slot-heading');head.textContent=`#${slot.id} · ${t(sides[slot.side])} · ${t(slot.fixed?'fixedSlot':slot.hardpoint?'hardpoint':'generalSlot')}`;card.append(head);
+ const card=el('section',undefined,'slot-card selectable-slot'+(slot.id===slotId?' chosen':''));card.dataset.slotId=slot.id;
+ const chooseSlot=()=>{const scroll=body.scrollTop,focused=document.activeElement===head;slotId=slot.id;render();body.scrollTop=scroll;if(focused)left.querySelector(`[data-slot-id="${slot.id}"] .slot-heading`).focus({preventScroll:true});};
+ const head=button('slot',chooseSlot,'slot-heading');head.setAttribute('aria-pressed',String(slot.id===slotId));head.textContent=`#${slot.id} · ${t(sides[slot.side])} · ${t(slot.fixed?'fixedSlot':slot.hardpoint?'hardpoint':'generalSlot')}`;card.append(head);
+ card.addEventListener('click',event=>{if(!event.target.closest('button'))chooseSlot();});
  card.append(el('div',`${used} / ${slot.size} ${t('used')} · ${slot.maxGuns} ${t('guns')} · ${slot.maxEngines} ${t('engines')}`,used>slot.size?'capacity exceeded':'capacity'));
  if(!members.length)card.append(el('p',t('emptySlot'),'help'));
  for(const member of members){const row=el('div',undefined,'installed-row'),text=el('span',label(member.module));const remaining={moduleInstances:draft.moduleInstances.filter(m=>m!==member)},reasons=fitReasons(remaining,slot,member.module,data).filter(r=>!(slot.fixed&&slot.defaults.includes(member.module)&&r==='fixedSlot'));
