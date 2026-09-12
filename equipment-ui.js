@@ -67,7 +67,7 @@ export function loadoutDialog(entry,data,ui){
   hull.append(el('h4',t('hull')));turret.append(el('h4',t('turret')));
   function facing(a,parent){const row=el('div',undefined,'armor-facing');row.append(el('span',t(sides[a.side]),'facing-name'));const values=el('div',undefined,'armor-values');
    for(const [value,kind,key] of [[a.base,'base','baseArmor'],[a.builtIn,'addon','builtInArmor']]){const line=el('div',undefined,'armor-line'),bar=el('span',undefined,'armor-bar '+kind);bar.style.width=Math.max(1,Math.min(value,36)*4)+'px';bar.title=t(key)+': '+fmt(value);line.append(bar,el('span',fmt(value),'armor-number'));values.append(line);}
-   if(a.contributions.length){const bonuses=el('div',undefined,'armor-bonuses');for(const m of a.contributions){const chip=el('span',t(m.type)+' +'+fmt(m.rating));chip.title=label(m.name);bonuses.append(chip);}values.append(bonuses);}row.append(values);parent.append(row);
+   if(a.contributions.length){const bonuses=el('div',undefined,'armor-bonuses');const grouped=new Map();for(const m of a.contributions){const key=t(m.type)+' +'+fmt(m.rating);grouped.set(key,(grouped.get(key)||0)+1);}for(const [text,count] of grouped){const chip=el('span',text+(count>1?' ×'+count:''));chip.title=a.contributions.map(m=>label(m.name)+' · '+t(m.type)+' +'+fmt(m.rating)).join('\n');bonuses.append(chip);}values.append(bonuses);}row.append(values);parent.append(row);
   }
   stats.armor.slice(0,4).forEach(a=>facing(a,hull));stats.armor.slice(4).forEach(a=>facing(a,turret));
   const schematic=el('div',undefined,'schematic');schematic.append(chassisDiagram(),el('small',t('schematic')));scheme.append(hull,schematic,turret);armor.append(scheme);

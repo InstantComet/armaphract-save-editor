@@ -61,3 +61,40 @@
  .module-tile>span, .inventory-module>span { font-size: 10px; line-height: 11px; }
  .inventory-toolbar { gap: 5px; }
 }
+/* Compact armor dashboard: mirrored hull/turret, with room for the mounts below. */
+.equipment-dialog .dialog-head { padding: 7px 12px; }
+.equipment-dialog .dialog-head .eyebrow { display: none; }
+.equipment-dialog .dialog-head h2 { margin: 0; font-size: 16px; }
+.equipment-dialog .dialog-foot { padding: 7px 12px; }
+.equipment-dialog .dialog-foot button { padding: 7px 14px; }
+.armory-layout { grid-template-rows: minmax(0,1fr) minmax(160px,27%); }
+.armory-overview { grid-template-columns: 1.2fr 1fr; gap: 7px; margin-bottom: 5px; }
+.armory-overview .game-panel { padding: 7px; }
+.armor-scheme { grid-template-columns: minmax(0,1fr) 54px minmax(0,1fr); gap: 5px; }
+.armor-facing { grid-template-columns: 44px minmax(0,1fr); gap: 4px; margin-bottom: 3px; min-height: 24px; }
+.facing-name { font-size: 11px; line-height: 14px; }
+.armor-scheme>div:last-child h4 { text-align: right; }
+.armor-scheme>div:last-child .armor-facing { grid-template-columns: minmax(0,1fr) 54px; }
+.armor-scheme>div:last-child .facing-name { grid-column: 2; grid-row: 1; text-align: right; }
+.armor-scheme>div:last-child .armor-values { grid-column: 1; grid-row: 1; }
+.armor-scheme>div:last-child .armor-line { flex-direction: row-reverse; }
+.armor-scheme>div:last-child .armor-bonuses { justify-content: flex-end; }
+.chassis-diagram { width: 48px; height: 100px; }
+.schematic small { display: none; }
+.armor-bonuses { gap: 2px; margin-top: 0; font-size: 8px; line-height: 10px; }
+.armor-legend { margin-top: 2px; font-size: 8px; }
+.vision-panel .stat-list { margin: 0; gap: 5px 8px; }
+.vision-capabilities { margin: 7px 0 4px; gap: 4px 8px; }
+@media(min-width:701px) {
+ .equipment-dialog { width: min(1200px,calc(100vw - 20px)); height: calc(100dvh - 20px); max-height: 1000px; }
+ .hardpoint-list { grid-template-columns: repeat(2,max-content); gap: 2px 6px; }
+ .mount-groups { grid-template-columns: 1fr 1fr; }
+}
+@media(max-width:700px) {
+ .armory-overview { grid-template-columns: 1fr; }
+ .armory-layout { grid-template-rows: minmax(0,1fr) minmax(235px,43%); }
+}
+@media(min-width:701px) and (max-height:800px) {
+ .armory-layout { grid-template-rows: minmax(0,1fr) 160px; }
+}
+.equipment-dialog #dialog-body { padding: 6px; }
