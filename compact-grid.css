@@ -22,9 +22,8 @@
 }
 .module-tile .module-icon, .inventory-module .module-icon { width: 16px; height: 16px; margin: 0; }
 .module-tile>span, .inventory-module>span { font-size: 12px; line-height: 13px; letter-spacing: 0; white-space: nowrap; display: block; overflow: hidden; text-overflow: ellipsis; }
-.module-tile.empty-mount { display: flex; flex-direction: row; align-items: stretch; justify-content: stretch; gap: var(--cell-gap); padding: 0; }
-.empty-mount>.empty-cell { flex: 1; display: flex; align-items: center; justify-content: center; font-size: 22px; line-height: 1; color: #a38a56; }
-.empty-mount>.empty-cell + .empty-cell { border-left: 1px solid #74665055; }
+.module-tile.empty-mount { display: flex; flex-direction: row; align-items: center; justify-content: center; padding: 0; border-style: dashed; }
+.empty-mount>.free-capacity { font-size: 11px; line-height: 1; color: #bfa46b; }
 .inventory-grid {
  display: grid; grid-template-columns: repeat(auto-fill,var(--cell)); grid-auto-rows: var(--cell);
  grid-auto-flow: row dense; gap: var(--cell-gap); align-content: start; justify-content: start;
