@@ -14,6 +14,52 @@ export function loadoutDialog(entry,data,ui){
  const layout=el('div',undefined,'armory-layout'),board=el('section',undefined,'armory-board'),inventory=el('section',undefined,'armory-inventory');
  board.setAttribute('aria-label',t('slots'));inventory.setAttribute('aria-label',t('moduleInventory'));layout.append(board,inventory);body.append(layout);
  const sideLabel=side=>t(side===4?'turretFront':side===5?'turretRear':sides[side]);
+ let suppressClickUntil=0;
+ layout.addEventListener('click',e=>{if(Date.now()<suppressClickUntil){e.preventDefault();e.stopImmediatePropagation();}},true);
+ function draggable(tile,payload){
+  tile.classList.add('draggable-module');
+  tile.onpointerdown=e=>{
+   if(e.button!==0||!e.isPrimary)return;
+   if(payload.instance&&definition.slots.find(s=>s.id===mountId(payload.instance))?.fixed&&!forced)return;
+   const startX=e.clientX,startY=e.clientY,controller=new AbortController(),options={signal:controller.signal};let ghost=null,target=null;
+   const clear=()=>{controller.abort();ghost?.remove();board.querySelectorAll('.drop-target').forEach(n=>n.classList.remove('drop-target'));};
+   document.addEventListener('pointermove',ev=>{
+    if(ev.pointerId!==e.pointerId)return;
+    if(!ghost&&Math.hypot(ev.clientX-startX,ev.clientY-startY)<6)return;
+    ev.preventDefault();
+    if(!ghost){ghost=tile.cloneNode(true);ghost.classList.add('module-drag-ghost');const box=tile.getBoundingClientRect();ghost.style.width=box.width+'px';ghost.style.height=box.height+'px';document.querySelector('#dialog').append(ghost);}
+    ghost.style.left=ev.clientX+10+'px';ghost.style.top=ev.clientY+10+'px';
+    target=document.elementFromPoint(ev.clientX,ev.clientY)?.closest('.mount-card');
+    board.querySelectorAll('.drop-target').forEach(n=>n.classList.remove('drop-target'));if(target&&board.contains(target))target.classList.add('drop-target');
+   },{...options,passive:false});
+   document.addEventListener('pointercancel',clear,options);
+   window.addEventListener('blur',clear,options);
+   document.querySelector('#dialog').addEventListener('close',clear,options);
+   document.addEventListener('keydown',ev=>{if(ev.key==='Escape'){ev.preventDefault();ev.stopPropagation();clear();}}, {...options,capture:true});
+   document.addEventListener('pointerup',ev=>{
+    if(ev.pointerId!==e.pointerId)return;
+    if(!ghost){clear();return;}
+    suppressClickUntil=Date.now()+350;
+    const hit=document.elementFromPoint(ev.clientX,ev.clientY),card=hit?.closest('.mount-card');clear();
+    try{
+     const origin=payload.instance,slot=card&&board.contains(card)?definition.slots.find(s=>s.id===Number(card.dataset.slotId)):null;
+     if(origin&&slot?.id===mountId(origin))return;
+     if(!slot){if(origin){draft.moduleInstances.splice(draft.moduleInstances.indexOf(origin),1);stock.push(origin.module);}else return;}
+     else{
+      const index=payload.source==='stock'?stock.indexOf(payload.name):-1;if(!origin&&payload.source==='stock'&&index<0)throw Error('noStock');
+      const targetTile=hit.closest('[data-module]'),targetTiles=[...card.querySelectorAll('[data-module]')];
+      const replaced=targetTile?slotModules(draft,slot)[targetTiles.indexOf(targetTile)]:null;
+      const next={moduleInstances:draft.moduleInstances.filter(m=>m!==origin&&m!==replaced)};
+      const reasons=fitReasons(next,slot,payload.name,data);if(!forced&&reasons.length)throw Error(reasons[0]);
+      installModule(next,slot,payload.name,data,forced);
+      if(origin){const added=next.moduleInstances.at(-1);next.moduleInstances[next.moduleInstances.length-1]={...origin,...added};}
+      draft.moduleInstances=next.moduleInstances;if(!origin&&payload.source==='stock')stock.splice(index,1);if(replaced)stock.push(replaced.module);slotId=slot.id;
+     }
+     member=null;candidate='';render();
+    }catch(err){const warning=inventory.querySelector('[role="alert"]');if(warning)warning.textContent=t(err.message);}
+   },options);
+  };
+ }
  function choose(slot,selected=null){const keyboard=document.activeElement?.matches(':focus-visible');slotId=slot.id;member=selected;candidate='';render();if(keyboard){const card=[...board.querySelectorAll('.mount-card')].find(c=>Number(c.dataset.slotId)===slot.id);const target=selected?[...card.querySelectorAll('.module-tile')].find(c=>c.dataset.module===selected.module):card.querySelector('.mount-heading');target?.focus({preventScroll:true});}}
  function statsPanel(){
   const stats=equipmentStats(draft,data),top=el('div',undefined,'armory-overview'),armor=el('section',undefined,'armor-panel game-panel'),vision=el('section',undefined,'vision-panel game-panel');
@@ -43,10 +89,10 @@ export function loadoutDialog(entry,data,ui){
     if(slot.fixed)head.append(el('small',t('fixedSlot'),'fixed-label'));head.append(el('small',used+'/'+slot.size,used>slot.size?'fit-warning':'mount-capacity'));card.append(head);
     card.onclick=e=>{if(!e.target.closest('button'))choose(slot,members[0]||null);};const tiles=el('div',undefined,'module-tiles'+(slot.fixed?' fixed-mount':''));tiles.style.setProperty('--slot-size',Math.max(1,slot.size));tiles.style.setProperty('--slot-columns',Math.max(1,slot.size,...members.map(m=>data.modules[m.module]?.size??1)));
     for(const m of members){const info=data.modules[m.module],tile=button('edit',()=>choose(slot,m),'module-tile '+moduleKind(m.module,info)+(member===m?' editing':''));tile.replaceChildren();tile.dataset.module=m.module;tile.title=label(m.module)+' · '+(info?.size??1)+'×'+(info?.height??1);tile.setAttribute('aria-label',label(m.module));tile.setAttribute('aria-pressed',String(member===m));tile.style.setProperty('--module-size',info?.size??1);tile.style.setProperty('--module-height',info?.height??1);tile.append(moduleIcon(m.module,info),el('span',data.modules[m.module]?.moduleShortName||data.modules[m.module]?.shortName||m.module));
-     if(m.originalSlotID!==slot.id)tile.append(el('small','+','extra-mark'));tiles.append(tile);
+     draggable(tile,{name:m.module,instance:m});if(m.originalSlotID!==slot.id)tile.append(el('small','+','extra-mark'));tiles.append(tile);
     }
     const free=Math.max(0,slot.size-used);
-    if(free){const empty=button('emptySlot',()=>choose(slot),'module-tile empty-mount');empty.replaceChildren();empty.style.setProperty('--module-size',free);empty.dataset.freeSize=free;empty.setAttribute('aria-label',t('emptySlot')+' #'+slot.id+' · '+free+'×1');empty.title=t('emptySlot')+' · '+free+'×1';empty.append(el('span','+ '+free+'×1','free-capacity'));tiles.append(empty);}
+    if(free){const empty=button('emptySlot',()=>choose(slot),'module-tile empty-mount');empty.replaceChildren();empty.style.setProperty('--module-size',free);empty.dataset.freeSize=free;empty.setAttribute('aria-label',t('emptySlot')+' #'+slot.id+' · '+free+'×1');empty.title=t('emptySlot')+' · '+free+'×1';empty.append(el('span','+','free-capacity'));tiles.append(empty);}
     if(!members.length&&slot.size===0)tiles.append(button('emptySlot',()=>choose(slot),'module-tile empty-mount'));
     const limits=el('div',undefined,'mount-limits');limits.title=slot.maxGuns+' '+t('guns')+' · '+slot.maxEngines+' '+t('engines');limits.setAttribute('aria-label',limits.title);for(const [count,kind] of [[slot.maxGuns,'weapon'],[slot.maxEngines,'engine']])if(count){const marks=el('span','▪'.repeat(count),kind);marks.setAttribute('aria-hidden','true');limits.append(marks);}card.append(tiles,limits);
     if(hardpoint)slots.append(card);else{if(!buckets.has(slot.side)){const bucket=el('div',undefined,'side-bucket side-'+slot.side);buckets.set(slot.side,bucket);slots.append(bucket);}buckets.get(slot.side).append(card);}
@@ -84,6 +130,7 @@ export function loadoutDialog(entry,data,ui){
   }
   function filter(){searchText=search.value;list.replaceChildren();const counts=new Map();stock.forEach(n=>counts.set(n,(counts.get(n)||0)+1));const names=Object.keys(data.modules).sort().filter(n=>(source==='catalog'||counts.has(n))&&(forced||searchText.trim()||!fitReasons(remaining(),slot,n,data).length)&&[label(n),n,data.modules[n].shortName,data.modules[n].moduleShortName].join(' ').toLowerCase().includes(searchText.toLowerCase()));if(!names.includes(candidate))candidate='';
    for(const name of names){const info=data.modules[name],tile=button('install',()=>{candidate=name;details();},'inventory-module '+moduleKind(name,info));tile.replaceChildren();tile.dataset.name=name;tile.style.setProperty('--module-size',info.size);tile.style.setProperty('--module-height',info.height??1);tile.title=label(name)+' · '+info.size+'×'+(info.height??1);tile.setAttribute('aria-label',label(name));tile.append(moduleIcon(name,info),el('span',info.moduleShortName||info.shortName||name),el('small',source==='stock'?'×'+counts.get(name):'+','stock-count'));tile.ondblclick=()=>{candidate=name;apply.click();};list.append(tile);}
+   for(const tile of list.querySelectorAll('[data-name]'))draggable(tile,{name:tile.dataset.name,source});
    if(!names.length)list.append(el('p',t(slot.fixed&&!forced?'fixedHelp':source==='stock'?'noCompatibleStock':'slotFullHelp'),'catalog-empty'));details();
   }search.oninput=filter;filter();
  }
